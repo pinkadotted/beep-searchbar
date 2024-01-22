@@ -68,7 +68,8 @@ const Dropdown: React.FC<DropdownProps> = ({
       e.preventDefault();
       setHighlightedIndex(null); // Reset highlighted index
       isFocusedHandler(false); // Reset isFocused
-    } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
+    } else {
+    // } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
       // Allow typing in the input when a printable character is pressed
       // isFocusedHandler(true);
       isRefFocusedHandler(inputRef);
