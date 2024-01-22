@@ -1,12 +1,14 @@
 import './App.css'
+import Card from './components/Card'
 import SyncSearchBar from './components/SyncSearchBar'
 
 function App() {
 
   return (
     <>
-      <h1 className='border-2 border-red-500'>Hello world</h1>
-      <SyncSearchBar />
+    <div className='flex border-2 justify-center'>
+      <Card />
+    </div>
     </>
   )
 }
