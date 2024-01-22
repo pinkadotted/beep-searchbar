@@ -1,6 +1,5 @@
 import './App.css'
 import Card from './components/Card'
-import SyncSearchBar from './components/SyncSearchBar'
 
 function App() {
 
