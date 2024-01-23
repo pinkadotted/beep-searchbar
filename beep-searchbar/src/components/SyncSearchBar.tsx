@@ -22,13 +22,16 @@ const SyncSearchBar: React.FC<SyncSearchBarProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
-   if (/^[a-zA-Z0-9]$/.test(e.key)) {
+    if (/^[a-zA-Z0-9]$/.test(e.key)) {
       // Allow typing in the input when a printable character is pressed
       // isFocusedHandler(true);
       isRefFocusedHandler(inputRef);
-    } else if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Escape") {
+    } else if (
+      e.key === "ArrowDown" ||
+      e.key === "ArrowUp" ||
+      e.key === "Escape"
+    ) {
       isRefFocusedHandler(dropdownRef);
     }
   };
@@ -36,7 +39,7 @@ const SyncSearchBar: React.FC<SyncSearchBarProps> = ({
   const isRefFocusedHandler = (ref: React.RefObject<any>) => {
     // setIsInputFocused(isInputFocused);
     ref.current?.focus();
-  }
+  };
 
   const selectedItemsHandler = (selectedItems: any) => {
     setSelectedItemsList(selectedItems);
@@ -45,7 +48,7 @@ const SyncSearchBar: React.FC<SyncSearchBarProps> = ({
   const isFocusedHandler = (isFocused: boolean) => {
     setIsFocused(isFocused);
     console.log(isFocused);
-  }
+  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleSearch: ", e.target.value);
@@ -60,10 +63,10 @@ const SyncSearchBar: React.FC<SyncSearchBarProps> = ({
   });
 
   return (
-    <div className="flex flex-col"
-    onBlur={() => setIsFocused(false)}
-    onFocus={() => setIsFocused(true)}
-
+    <div
+      className="flex flex-col h-20 px-5 relative items-center"
+      onBlur={() => setIsFocused(false)}
+      onFocus={() => setIsFocused(true)}
     >
       {/* input label */}
       <label
@@ -87,18 +90,21 @@ const SyncSearchBar: React.FC<SyncSearchBarProps> = ({
 
       {/* input results */}
       {
-      // searchTerm !== ""
-      isFocused
-       && 
-       <Dropdown 
-       options={filteredCountries} 
-       selectedItemsHandler={selectedItemsHandler} 
-       selectedItems={selectedItemsList} 
-       isFocusedHandler={isFocusedHandler} 
-       isRefFocusedHandler={isRefFocusedHandler}
-       dropdownRef={dropdownRef}
-       inputRef={inputRef}
-       />}
+        // searchTerm !== ""
+        isFocused && (
+          <div className="absolute mt-20 px-2.5 w-full">
+            <Dropdown
+              options={filteredCountries}
+              selectedItemsHandler={selectedItemsHandler}
+              selectedItems={selectedItemsList}
+              isFocusedHandler={isFocusedHandler}
+              isRefFocusedHandler={isRefFocusedHandler}
+              dropdownRef={dropdownRef}
+              inputRef={inputRef}
+            />
+          </div>
+        )
+      }
     </div>
   );
 };
