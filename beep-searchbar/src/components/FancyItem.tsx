@@ -1,5 +1,7 @@
 import React from 'react'
 
+// Just a custom component that can be passed to the SearchBar component
+
 interface FancyItemProps {
     data: any
 }
