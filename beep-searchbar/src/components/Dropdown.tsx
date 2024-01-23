@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { unmountComponentAtNode } from "react-dom";
+import React, { useEffect, useState } from "react";
 
 interface DropdownProps {
   component?: React.ComponentType<{ data: any }>;
@@ -62,7 +61,6 @@ const Dropdown: React.FC<DropdownProps> = ({
             block: "nearest",
           });
         }
-
         return nextIndex;
       });
     } else if (e.key === "Enter" && highlightedIndex !== null) {
@@ -93,15 +91,14 @@ const Dropdown: React.FC<DropdownProps> = ({
         <div
           key={key}
           className={`flex justify-between items-center p-3 m-1 cursor-pointer hover:bg-blue-100 ${
-            highlightedIndex === key ? "bg-blue-200" : ""
+            highlightedIndex === key ? "bg-blue-100" : ""
           }`}
           onClick={() => clickHandler(country)}
           onMouseDown={(e) => e.preventDefault()}
           onMouseUp={(e) => e.preventDefault()}
         >
-          {/* Custom component if provided */}
-          {FancyItem ? <FancyItem data={country}/> : 
-          <p>{country.name}</p> }
+          {/* Custom component if provided, else just country.name */}
+          {FancyItem ? <FancyItem data={country} /> : <p>{country.name}</p>}
           <input
             type="checkbox"
             className="h-5 w-5"

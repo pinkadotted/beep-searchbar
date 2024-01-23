@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
-import Data from "../../MOCK_DATA.json";
-import CountryData from "../../countries.json";
+// import Data from "../../MOCK_DATA.json";
+import CountryData from "../../data/countries.json"
 import Dropdown from "./Dropdown";
 
 interface SearchBarProps {
@@ -8,8 +8,7 @@ interface SearchBarProps {
   label: string;
   description: string;
   disabled?: boolean;
-  isAsync: boolean; // New prop to determine async or sync behavior
-//   props: any;
+  isAsync: boolean; // prop to determine async or sync behavior
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -17,8 +16,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   description = "Search for a country",
   disabled = false,
   isAsync = false,
-//   props
-  component
+  component,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItemsList, setSelectedItemsList] = useState([]);
@@ -30,8 +28,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
     ? showDropdown && isFocused
     : isFocused;
 
-//   const countries: any = Data;
-    const countries: any = CountryData;
+  //   const countries: any = Data;
+  const countries: any = CountryData;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -143,7 +141,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
       {/* only if async */}
       {isAsync && isLoading && (
-        <div className="absolute inset-y-0 right-0 flex items-center mr-7 pointer-events-none">
+        <div id="loading-spinner" className="absolute inset-y-0 right-0 flex items-center mr-7 pointer-events-none">
           <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-blue-500 border-opacity-50"></div>
         </div>
       )}
