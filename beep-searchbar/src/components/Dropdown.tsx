@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { unmountComponentAtNode } from "react-dom";
 
 interface DropdownProps {
+  component?: React.ComponentType<{ data: any }>;
   options: any;
   selectedItemsHandler: any;
   selectedItems: any;
@@ -12,6 +13,7 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
+  component: FancyItem,
   options,
   selectedItemsHandler,
   selectedItems,
@@ -30,6 +32,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     } else {
       selectedItemsHandler([...selectedItems, country]);
     }
+    console.log("selectedItems: ", selectedItems);
   };
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       });
     } else if (e.key === "Enter" && highlightedIndex !== null) {
       e.preventDefault();
-      clickHandler(options[highlightedIndex].name);
+      clickHandler(options[highlightedIndex]);
     } else if (e.key === "Escape") {
       // Handle the "Escape" key to close the dropdown
       e.preventDefault();
@@ -89,19 +92,21 @@ const Dropdown: React.FC<DropdownProps> = ({
         // Dropdown item with checkbox
         <div
           key={key}
-          className={`flex justify-between p-3 m-1 cursor-pointer hover:bg-blue-100 ${
+          className={`flex justify-between items-center p-3 m-1 cursor-pointer hover:bg-blue-100 ${
             highlightedIndex === key ? "bg-blue-200" : ""
           }`}
-          onClick={() => clickHandler(country.name)}
+          onClick={() => clickHandler(country)}
           onMouseDown={(e) => e.preventDefault()}
           onMouseUp={(e) => e.preventDefault()}
         >
-          <p>{country.name}</p>
+          {/* Custom component if provided */}
+          {FancyItem ? <FancyItem data={country}/> : 
+          <p>{country.name}</p> }
           <input
             type="checkbox"
             className="h-5 w-5"
-            checked={selectedItems.includes(country.name)}
-            onChange={() => clickHandler(country.name)}
+            checked={selectedItems.includes(country)}
+            onChange={() => clickHandler(country)}
           />
         </div>
       ))}
