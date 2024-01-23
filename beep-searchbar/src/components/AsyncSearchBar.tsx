@@ -99,7 +99,7 @@ const AsyncSearchBar: React.FC<AsyncSearchBarProps> = ({
 
   return (
     <div
-      className="flex flex-col h-20 relative items-center"
+      className="flex flex-col relative items-center"
       onBlur={() => setIsFocused(false)}
       onFocus={() => setIsFocused(true)}
       onKeyDown={handleKeyDown}
