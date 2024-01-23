@@ -1,7 +1,5 @@
-import AsyncSearchBar from "./AsyncSearchBar";
 import FancyItem from "./FancyItem";
 import SearchBar from "./SearchBar";
-import SyncSearchBar from "./SyncSearchBar";
 import Data from "../../data/countries.json";
 
 const countries: any = Data;
