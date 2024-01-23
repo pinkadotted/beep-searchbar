@@ -11,7 +11,7 @@ The components were developed with the example search bar provided in mind.
 
 ## Quick start
 
-Go to the root directory of the project: beep-assignment
+Go to the root directory of the project: beep-searchbar
 
 ```bash
   npm install
