@@ -22,7 +22,6 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
 
-
   const clickHandler = (country: any) => {
     if (selectedItems.includes(country)) {
       selectedItemsHandler(
@@ -47,11 +46,14 @@ const Dropdown: React.FC<DropdownProps> = ({
         if (prevIndex === null) {
           return direction === 1 ? 0 : options.length - 1;
         }
-        const nextIndex = (prevIndex + direction + options.length) % options.length;
+        const nextIndex =
+          (prevIndex + direction + options.length) % options.length;
 
         // Scroll into view if necessary
         const dropdownElement = dropdownRef.current;
-        const highlightedElement = dropdownElement?.children[nextIndex] as HTMLElement | undefined;
+        const highlightedElement = dropdownElement?.children[nextIndex] as
+          | HTMLElement
+          | undefined;
         if (highlightedElement) {
           highlightedElement.scrollIntoView({
             block: "nearest",
@@ -69,18 +71,17 @@ const Dropdown: React.FC<DropdownProps> = ({
       setHighlightedIndex(null); // Reset highlighted index
       isFocusedHandler(false); // Reset isFocused
     } else {
-    // } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
+      // } else if (/^[a-zA-Z0-9]$/.test(e.key)) {
       // Allow typing in the input when a printable character is pressed
       // isFocusedHandler(true);
       isRefFocusedHandler(inputRef);
     }
   };
 
-
   return (
     <div
-    className="flex flex-col z-40 h-80 overflow-y-auto drop-shadow-2xl bg-white rounded-lg border"
-    tabIndex={0}
+      className="flex flex-col z-40 max-h-80  overflow-y-auto drop-shadow-2xl bg-white rounded-lg border focus:outline-none text-gray-700 text-sm md"
+      tabIndex={0}
       onKeyDown={handleKeyDown}
       ref={dropdownRef}
     >
