@@ -5,15 +5,15 @@ import Dropdown from "./Dropdown";
 
 interface SearchBarProps {
   component?: any;
-  label: string;
-  description: string;
+  label?: string;
+  description?: string;
   disabled?: boolean;
-  isAsync: boolean; // prop to determine async or sync behavior
+  isAsync?: boolean; // prop to determine async or sync behavior
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  label = "Search",
-  description = "Search for a country",
+  label = "Search label",
+  description = "Search for something!",
   disabled = false,
   isAsync = false,
   component,
