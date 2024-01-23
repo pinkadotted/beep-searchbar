@@ -86,6 +86,12 @@ const Dropdown: React.FC<DropdownProps> = ({
       onKeyDown={handleKeyDown}
       ref={dropdownRef}
     >
+      {
+      options.length == 0 && 
+        <div className="flex justify-between items-center p-3 m-1 cursor-pointer hover:bg-blue-100">
+          <p>No results found</p>
+          </div>
+          }
       {options.map((country: any, key: any) => (
         // Dropdown item with checkbox
         <div
