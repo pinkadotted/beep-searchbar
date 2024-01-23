@@ -67,3 +67,7 @@ Once the server has started, open <localhost:5173> on your browser. The search b
 - Upon selection, it would be good for the selected options to be displayed in the input field so that the user can easily see all the selection options
 - A checkbox that allows the user to select all the options 
 - A more robust testing suite
+
+### Credits
+The mock dataset was retrieved from this GitHub gist:
+https://gist.github.com/amitjambusaria/b9adebcb4f256eae3dfa64dc9f1cc2ef#file-countries-json
