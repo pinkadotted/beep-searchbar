@@ -6,7 +6,7 @@ This is a React application for a Search Dropdown Component. It is primarily wri
 
 The default dataset used is an array of countries, placed in *../data/countries.json*.
 
-The 
+The components were developed with the example search bar provided in mind. 
 
 
 ## Quick start
