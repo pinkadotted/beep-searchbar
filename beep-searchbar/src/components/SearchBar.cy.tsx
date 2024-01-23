@@ -26,20 +26,15 @@ describe('<SearchBar />', () => {
   it('the checkbox is checked when "Afghanistan" is clicked', () => {
     cy.mount(<SearchBar label='Test Search Bar label' description='Test Seach Bar Description' isAsync={false} />)
     cy.get('input').type('Af')
-    // click on the div that contains "Afghanistan"
     cy.get('div').contains('Afghanistan').click()
-    // check if the checkbox is checked
     cy.get('input').should('be.checked')
   })
 
   it('the checkbox is unchecked when "Afghanistan" is clicked twice', () => {
     cy.mount(<SearchBar label='Test Search Bar label' description='Test Seach Bar Description' isAsync={false} />)
     cy.get('input').type('Af')
-    // click on the div that contains "Afghanistan"
     cy.get('div').contains('Afghanistan').click()
-    // click on the div that contains "Afghanistan" again
     cy.get('div').contains('Afghanistan').click()
-    // check if the checkbox is unchecked
     cy.get('input').should('not.be.checked')
   })
 
@@ -47,18 +42,24 @@ describe('<SearchBar />', () => {
     cy.mount(<SearchBar label='Test Search Bar label' description='Test Seach Bar Description' isAsync={false} />)
     cy.get('input').type('Chi')
     cy.get('div').contains('Chi').type('{downarrow}{downarrow}')
-    // look for the div with key "Chile" and check if its parent has the background color rgb(219, 234, 254)
     cy.get('div').contains('Chile').parent().should('have.css', 'background-color', 'rgb(219, 234, 254)')
   })
 
-  
+  // No results found when gibberish is typed
+  it('No results found when gibberish is typed', () => {
+    cy.mount(<SearchBar label='Test Search Bar label' description='Test Seach Bar Description' isAsync={false} />)
+    cy.get('input').type('asdf')
+    cy.get('div').contains('No results found')
+  })
+
   // async tests 
 
   // when something is typed in the searchbar, the loading spinner appears
   it('when something is typed in the searchbar, the loading spinner appears', () => {
     cy.mount(<SearchBar label='Test Search Bar label' description='Test Seach Bar Description' isAsync={true} />)
     cy.get('input').type('Chi')
-      // the loading spinner has id "loading-spinner"
     cy.get('#loading-spinner').should('exist')  
   })
+
+
 })
